@@ -1,4 +1,15 @@
-// storage
+
+// localStorage methods
+function saveArr(arr) {
+  window.localStorage.setItem('library', JSON.stringify(arr));
+}
+
+function retrieveArr() {
+  let arr = [];
+  if (window.localStorage.getItem('library') !== null) arr = JSON.parse(window.localStorage.getItem('library'));
+  return arr;
+}
+
 const myLibrary = retrieveArr();
 render(myLibrary);
 
@@ -8,29 +19,6 @@ function Book(title, nP, author, read) {
   this.title = title;
   this.numberPages = nP;
   this.read = read;
-}
-
-// changing methods
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-  saveArr(myLibrary);
-  render(myLibrary);
-}
-
-function deleteBook(index) {
-  myLibrary.splice(index, 1);
-  saveArr(myLibrary);
-  render(myLibrary);
-}
-
-function readedBook(index) {
-  if (myLibrary[index].read == true) {
-    myLibrary[index].read = false;
-  } else {
-    myLibrary[index].read = true;
-  }
-  saveArr(myLibrary);
-  render(myLibrary);
 }
 
 // show methods
@@ -65,16 +53,29 @@ function showForm() {
   }
 }
 
-// localStorage methods
-function saveArr(arr) {
-  window.localStorage.setItem('library', JSON.stringify(arr));
+// changing methods
+function addBookToLibrary(book) {
+  myLibrary.push(book);
+  saveArr(myLibrary);
+  render(myLibrary);
 }
 
-function retrieveArr() {
-  let arr = [];
-  if (window.localStorage.getItem('library') !== null) arr = JSON.parse(window.localStorage.getItem('library'));
-  return arr;
+function deleteBook(index) {
+  myLibrary.splice(index, 1);
+  saveArr(myLibrary);
+  render(myLibrary);
 }
+
+function readedBook(index) {
+  if (myLibrary[index].read == true) {
+    myLibrary[index].read = false;
+  } else {
+    myLibrary[index].read = true;
+  }
+  saveArr(myLibrary);
+  render(myLibrary);
+}
+
 
 // listener to add a book
 const button = document.getElementById('button');
