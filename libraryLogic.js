@@ -1,5 +1,8 @@
-let myLibrary = [];
+// storage
+let myLibrary = retrieveArr();
+render(myLibrary);
 
+// constructor
 function Book(title, nP, author, read) {
   this.author = author;
   this.title = title;
@@ -7,13 +10,16 @@ function Book(title, nP, author, read) {
   this.read = read;
 }
 
+// changing methods
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  saveArr(myLibrary);
   render(myLibrary);
 }
 
 function deleteBook(index){
   myLibrary.splice(index, 1);
+  saveArr(myLibrary);
   render(myLibrary);
 }
 
@@ -23,12 +29,13 @@ function readedBook(index){
   }else {
     myLibrary[index].read = true;
   }
+  saveArr(myLibrary);
   render(myLibrary);
 }
 
+// show methods
 function render(books){
   let htmlBooks = "";
-  //arr.forEach(function callback(currentValue, index, array) { // tu iterador }[, thisArg]);
   books.forEach((book,index) => {
 
     htmlBooks +=  `
@@ -51,6 +58,28 @@ function render(books){
 
 }
 
+function showForm(){
+  form = document.getElementById("hideShow");
+  if (form.style.display === "none") {
+      form.style.display = "block";
+    } else {
+      form.style.display = "none";
+    }
+}
+
+// localStorage methods
+function saveArr(arr) {
+  window.localStorage.setItem('library', JSON.stringify(arr));
+}
+
+function retrieveArr(){
+  let arr = [];
+  if (window.localStorage.getItem("library") !== null)
+    arr = JSON.parse(window.localStorage.getItem('library'));
+  return arr;
+}
+
+// listener to add a book
 const button = document.getElementById('button');
 button.addEventListener('click', event => {
   const form = document.getElementById('form');
@@ -63,10 +92,10 @@ button.addEventListener('click', event => {
 
       addBookToLibrary(book);
     }
-
-    console.log(myLibrary);
   });
 
+
+  // validate methods
   function validateTitle(title)
   {
     if (title.length > 5)
@@ -99,14 +128,4 @@ button.addEventListener('click', event => {
       alert(" The book must have more than 30 pages ");
       return false;
     }
-  }
-
-
-  function showForm(){
-    form = document.getElementById("hideShow");
-    if (form.style.display === "none") {
-        form.style.display = "block";
-      } else {
-        form.style.display = "none";
-      }
   }
