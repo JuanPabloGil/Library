@@ -14,24 +14,24 @@
 
     <div id="hideShow" style="display:none">
 
-      <form id="form" action="/" >
+      <form id="form" action="#" >
         <div class="form-group">
           <label >Author</label>
-          <input type="text" class="form-control" placeholder="Enter author" id="authorForm">
+          <input minlength="3" type="text" class="form-control" placeholder="Enter author" id="authorForm">
         </div>
         <div class="form-group">
           <label >Title</label>
-          <input type="text" class="form-control" placeholder="Enter title" id="titleForm">
+          <input minlength="5" type="text" class="form-control" placeholder="Enter title" id="titleForm">
         </div>
         <div class="form-group">
           <label> # Pages</label>
-          <input type="number" class="form-control" placeholder="Enter number of pages" id="numberForm">
+          <input min="30" type="number" class="form-control" placeholder="Enter number of pages" id="numberForm">
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="readForm">
           <label class="form-check-label" for="readForm">Read</label>
         </div>
-        <button id="button" type="button" name="button" class="btn btn-primary">Add Book</button>
+        <button id="button" type="submit" name="button" class="btn btn-primary">Add Book</button>
       </form>
 
     </div>

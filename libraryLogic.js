@@ -13,26 +13,23 @@ const myLibrary = retrieveArr();
 
 // validate methods
 function validateTitle(title) {
-  if (title.length > 5) {
+  if (title.length >= 5) {
     return (true);
   }
-  alert('You have entered an invalid title, must be bigger than 5 chars');
   return (false);
 }
 
 function validateAuthor(author) {
-  if (author.length > 3) {
+  if (author.length >= 3) {
     return (true);
   }
-  alert('You have entered an invalid author, must be bigger than 3 chars');
   return (false);
 }
 
 function validatePages(number) {
-  if (number > 30) {
+  if (number >= 30) {
     return true;
   }
-  alert(' The book must have more than 30 pages ');
   return false;
 }
 
