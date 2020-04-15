@@ -67,3 +67,17 @@ function validatePages(number)
     return false;
   }
 }
+
+const title = 'My book';
+
+const text = `
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">${title}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Author</h6>
+    <p class="card-text">Number of Pages</p>
+  </div>
+</div>`;
+
+const container = document.querySelector('.container');
+container.insertAdjacentHTML('beforeend', text);
