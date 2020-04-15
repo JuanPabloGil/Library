@@ -9,35 +9,28 @@ function Book(title, nP, author, read) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  render();
+  render(myLibrary);
 }
 
-function render(){
+function render(books){
+  let htmlBooks = "";
 
-  const title = 'My book';
-
-  let text = ""
-    for (let i = 0 ; i < myLibrary.length; i += 1){
-     text +=  `
+  books.forEach((book) => {
+    htmlBooks +=  `
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">${myLibrary[i].title}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Author: ${myLibrary[i].author}</h6>
-          <p class="card-text">Number of Pages ${myLibrary[i].numberPages}</p>
+          <h5 class="card-title">${book.title}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Author: ${book.author}</h6>
+          <p class="card-text">Number of Pages ${book.numberPages}</p>
         </div>
       </div>
       ` ;
-    }
+  });
 
-  const container = document.querySelector('.container');
-  container.insertAdjacentHTML('beforeend', text);
+  const containerBooks = document.querySelector('.container-books');
+  containerBooks.innerHTML = htmlBooks;
 
 }
-
-console.log(myLibrary);
-
-
-
 
 const button = document.getElementById('button');
 button.addEventListener('click', event => {
