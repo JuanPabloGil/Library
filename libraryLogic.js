@@ -35,7 +35,7 @@ function render(books){
 const button = document.getElementById('button');
 button.addEventListener('click', event => {
   const form = document.getElementById('form');
-  if (validateTitle(form.titleForm.value) && validatePages(form.numberForm.value)) {
+  if (validateTitle(form.titleForm.value) && validatePages(form.numberForm.value) && validateAuthor(form.authorForm.value)) {
     const book = new Book(
       form.titleForm.value,
       form.numberForm.value,
@@ -80,4 +80,14 @@ button.addEventListener('click', event => {
       alert(" The book must have more than 30 pages ");
       return false;
     }
+  }
+
+
+  function showForm(){
+    form = document.getElementById("hideShow");
+    if (form.style.display === "none") {
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
   }

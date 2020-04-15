@@ -9,29 +9,35 @@
 
 <body>
   <div class="container">
-    <form id="form" action="/">
-      <div class="form-group">
-        <label >Author</label>
-        <input type="text" class="form-control" placeholder="Enter author" id="authorForm">
-      </div>
-      <div class="form-group">
-        <label >Title</label>
-        <input type="text" class="form-control" placeholder="Enter title" id="titleForm">
-      </div>
-      <div class="form-group">
-        <label> # Pages</label>
-        <input type="number" class="form-control" placeholder="Enter number of pages" id="numberForm">
-      </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="readForm">
-        <label class="form-check-label" for="readForm">Read</label>
-      </div>
-      <button id="button" type="button" name="button" class="btn btn-primary">Add Book</button>
-    </form>
+    <button onclick="showForm()">Create a new Book</button>
 
+    <div id="hideShow" style="display:none">
+
+      <form id="form" action="/" >
+        <div class="form-group">
+          <label >Author</label>
+          <input type="text" class="form-control" placeholder="Enter author" id="authorForm">
+        </div>
+        <div class="form-group">
+          <label >Title</label>
+          <input type="text" class="form-control" placeholder="Enter title" id="titleForm">
+        </div>
+        <div class="form-group">
+          <label> # Pages</label>
+          <input type="number" class="form-control" placeholder="Enter number of pages" id="numberForm">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="readForm">
+          <label class="form-check-label" for="readForm">Read</label>
+        </div>
+        <button id="button" type="button" name="button" class="btn btn-primary">Add Book</button>
+      </form>
+
+    </div>
+    <h1>All the book:</h1>
     <div class="container-books"></div>
   </div>
-  
+
   <script src="libraryLogic.js"></script>
 </body>
 
