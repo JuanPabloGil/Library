@@ -17,6 +17,15 @@ function deleteBook(index){
   render(myLibrary);
 }
 
+function readedBook(index){
+  if ( myLibrary[index].read == true ){
+    myLibrary[index].read = false;
+  }else {
+    myLibrary[index].read = true;
+  }
+  render(myLibrary);
+}
+
 function render(books){
   let htmlBooks = "";
   //arr.forEach(function callback(currentValue, index, array) { // tu iterador }[, thisArg]);
@@ -28,6 +37,9 @@ function render(books){
           <h5 class="card-title">${book.title}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Author: ${book.author}</h6>
           <p class="card-text">Number of Pages ${book.numberPages}</p>
+
+            <button class="btn btn-info" onclick="readedBook(${index})"> Status: ${book.read ? "Readed": "Not reded" } </button>
+
         </div>
           <button class="btn btn-info" onclick="deleteBook(${index})">Delete book</button>
       </div>
