@@ -12,10 +12,16 @@ function addBookToLibrary(book) {
   render(myLibrary);
 }
 
+function deleteBook(index){
+  myLibrary.splice(index, 1);
+  render(myLibrary);
+}
+
 function render(books){
   let htmlBooks = "";
+  //arr.forEach(function callback(currentValue, index, array) { // tu iterador }[, thisArg]);
+  books.forEach((book,index) => {
 
-  books.forEach((book) => {
     htmlBooks +=  `
       <div class="card">
         <div class="card-body">
@@ -23,6 +29,7 @@ function render(books){
           <h6 class="card-subtitle mb-2 text-muted">Author: ${book.author}</h6>
           <p class="card-text">Number of Pages ${book.numberPages}</p>
         </div>
+          <button class="btn btn-info" onclick="deleteBook(${index})">Delete book</button>
       </div>
       ` ;
   });
