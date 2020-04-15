@@ -1,4 +1,3 @@
-
 // localStorage methods
 function saveArr(arr) {
   window.localStorage.setItem('library', JSON.stringify(arr));
@@ -11,7 +10,31 @@ function retrieveArr() {
 }
 
 const myLibrary = retrieveArr();
-render(myLibrary);
+
+// validate methods
+function validateTitle(title) {
+  if (title.length > 5) {
+    return (true);
+  }
+  alert('You have entered an invalid title, must be bigger than 5 chars');
+  return (false);
+}
+
+function validateAuthor(author) {
+  if (author.length > 3) {
+    return (true);
+  }
+  alert('You have entered an invalid author, must be bigger than 3 chars');
+  return (false);
+}
+
+function validatePages(number) {
+  if (number > 30) {
+    return true;
+  }
+  alert(' The book must have more than 30 pages ');
+  return false;
+}
 
 // constructor
 function Book(title, nP, author, read) {
@@ -44,15 +67,6 @@ function render(books) {
   containerBooks.innerHTML = htmlBooks;
 }
 
-function showForm() {
-  form = document.getElementById('hideShow');
-  if (form.style.display === 'none') {
-    form.style.display = 'block';
-  } else {
-    form.style.display = 'none';
-  }
-}
-
 // changing methods
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -60,28 +74,15 @@ function addBookToLibrary(book) {
   render(myLibrary);
 }
 
-function deleteBook(index) {
-  myLibrary.splice(index, 1);
-  saveArr(myLibrary);
-  render(myLibrary);
-}
-
-function readedBook(index) {
-  if (myLibrary[index].read == true) {
-    myLibrary[index].read = false;
-  } else {
-    myLibrary[index].read = true;
-  }
-  saveArr(myLibrary);
-  render(myLibrary);
-}
-
-
 // listener to add a book
 const button = document.getElementById('button');
-button.addEventListener('click', event => {
+button.addEventListener('click', () => {
   const form = document.getElementById('form');
-  if (validateTitle(form.titleForm.value) && validatePages(form.numberForm.value) && validateAuthor(form.authorForm.value)) {
+  if (
+    validateTitle(form.titleForm.value)
+    && validatePages(form.numberForm.value)
+    && validateAuthor(form.authorForm.value)
+  ) {
     const book = new Book(
       form.titleForm.value,
       form.numberForm.value,
@@ -93,28 +94,4 @@ button.addEventListener('click', event => {
   }
 });
 
-
-// validate methods
-function validateTitle(title) {
-  if (title.length > 5) {
-    return (true);
-  }
-  alert('You have entered an invalid title, must be bigger than 5 chars');
-  return (false);
-}
-
-function validateAuthor(author) {
-  if (author.length > 3) {
-    return (true);
-  }
-  alert('You have entered an invalid author, must be bigger than 3 chars');
-  return (false);
-}
-
-function validatePages(number) {
-  if (number > 30) {
-    return true;
-  }
-  alert(' The book must have more than 30 pages ');
-  return false;
-}
+render(myLibrary);
