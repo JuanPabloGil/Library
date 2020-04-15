@@ -4,8 +4,24 @@
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
+
 <body>
-<h1> Hello </h1>
+  <div class="container">
+    <form id="form" action="/">
+      <div class="form-group">
+        <label >Title</label>
+        <input type="text" class="form-control" placeholder="Enter title" id="titleForm">
+      </div>
+      <div class="form-group">
+        <label> # Pages</label>
+        <input type="number" class="form-control" placeholder="Enter number of pages" id="numberPages">
+      </div>
+      <button id="button" type="button" name="button" class="btn btn-primary">Add Book</button>
+    </form>
+  </div>
+  <script src="libraryLogic.js"></script>
 </body>
+
 </html>
