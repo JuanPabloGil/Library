@@ -1,7 +1,6 @@
 /* global  render, deleteListeners, readedListeners, retrieveArr, saveArr */
 /* eslint no-undef: "error" */
 
-
 const myLibrary = retrieveArr();
 
 // validate methods
@@ -34,7 +33,7 @@ function Book(title, nP, author, read) { // eslint-disable-line no-unused-vars
   this.read = read;
 }
 
-// changing methods
+// set listener to add a book
 function addBookToLibrary(book) { // eslint-disable-line no-unused-vars
   myLibrary.push(book);
   saveArr(myLibrary);
@@ -43,8 +42,6 @@ function addBookToLibrary(book) { // eslint-disable-line no-unused-vars
   readedListeners();
 }
 
-
-// listener to add a book
 const button = document.getElementById('button');
 button.addEventListener('click', () => {
   const form = document.getElementById('form');
@@ -64,7 +61,7 @@ button.addEventListener('click', () => {
   }
 });
 
-// DOM MANIPULATION
+// set listener to hide the form
 function showForm() {
   const form = document.getElementById('hideShow');
   if (form.style.display === 'none') {
@@ -73,9 +70,9 @@ function showForm() {
     form.style.display = 'none';
   }
 }
-
 document.getElementById('btn-show-form').addEventListener('click', showForm);
 
+// render and set listeners to delete an read a book
 render(myLibrary);
 deleteListeners();
 readedListeners();

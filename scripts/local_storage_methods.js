@@ -1,4 +1,3 @@
-// LOCAL STORAGES METHODS
 function saveArr(arr) { // eslint-disable-line no-unused-vars
   window.localStorage.setItem('library', JSON.stringify(arr));
 }
