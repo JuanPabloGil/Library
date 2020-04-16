@@ -1,14 +1,3 @@
-// localStorage methods
-function saveArr(arr) {
-  window.localStorage.setItem('library', JSON.stringify(arr));
-}
-
-function retrieveArr() {
-  let arr = [];
-  if (window.localStorage.getItem('library') !== null) arr = JSON.parse(window.localStorage.getItem('library'));
-  return arr;
-}
-
 const myLibrary = retrieveArr();
 
 // validate methods
@@ -41,32 +30,24 @@ function Book(title, nP, author, read) {
   this.read = read;
 }
 
-// show methods
-function render(books) {
-  let htmlBooks = '';
-  books.forEach((book, index) => {
-    htmlBooks += `
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">${book.title}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Author: ${book.author}</h6>
-          <p class="card-text">Number of Pages ${book.numberPages}</p>
-
-            <button class="btn btn-info" onclick="readedBook(${index})"> Status: ${book.read ? 'Readed' : 'Not reded'} </button>
-
-        </div>
-          <button class="btn btn-info" onclick="deleteBook(${index})">Delete book</button>
-      </div>
-      `;
-  });
-
-  const containerBooks = document.querySelector('.container-books');
-  containerBooks.innerHTML = htmlBooks;
-}
-
 // changing methods
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  saveArr(myLibrary);
+  render(myLibrary);
+}
+function deleteBook(index) {
+  myLibrary.splice(index, 1);
+  saveArr(myLibrary);
+  render(myLibrary);
+}
+
+function readedBook(index) {
+  if (myLibrary[index].read) {
+    myLibrary[index].read = false;
+  } else {
+    myLibrary[index].read = true;
+  }
   saveArr(myLibrary);
   render(myLibrary);
 }

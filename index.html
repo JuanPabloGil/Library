@@ -39,33 +39,9 @@
     <div class="container-books"></div>
   </div>
 
-  <script src="libraryLogic.js"></script>
-  <script>
-    function showForm() {
-      const form = document.getElementById('hideShow');
-      if (form.style.display === 'none') {
-        form.style.display = 'block';
-      } else {
-        form.style.display = 'none';
-      }
-    }
-
-    function deleteBook(index) {
-      myLibrary.splice(index, 1);
-      saveArr(myLibrary);
-      render(myLibrary);
-    }
-
-    function readedBook(index) {
-      if (myLibrary[index].read) {
-        myLibrary[index].read = false;
-      } else {
-        myLibrary[index].read = true;
-      }
-      saveArr(myLibrary);
-      render(myLibrary);
-    }
-  </script>
+  <script src="scripts/local_storage.js"></script> 
+  <script src="scripts/dom_manipulation.js"></script> 
+  <script src="scripts/library_logic.js"></script>
 </body>
 
 </html>
