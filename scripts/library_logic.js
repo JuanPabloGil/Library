@@ -9,7 +9,8 @@ function retrieveArr() {
   return arr;
 }
 
-// DOM MANIPULATION
+const myLibrary = retrieveArr();
+
 function render(books) {
   let htmlBooks = '';
   books.forEach((book, index) => {
@@ -20,10 +21,10 @@ function render(books) {
           <h6 class="card-subtitle mb-2 text-muted">Author: ${book.author}</h6>
           <p class="card-text">Number of Pages ${book.numberPages}</p>
 
-            <button class="btn btn-info" onclick="readedBook(${index})"> Status: ${book.read ? 'Readed' : 'Not reded'} </button>
+            <button class="btn btn-info readed-book" value="${index}"> Status: ${book.read ? 'Readed' : 'Not reded'} </button>
 
         </div>
-          <button class="btn btn-info" onclick="deleteBook(${index})">Delete book</button>
+          <button class="btn btn-info delete-book" value="${index}">Delete book</button>
       </div>
       `;
   });
@@ -32,6 +33,39 @@ function render(books) {
   containerBooks.innerHTML = htmlBooks;
 }
 
+function readedListeners() {
+  const readedBtns = [...document.querySelectorAll('.readed-book')];
+  readedBtns.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      const index = event.target.value;
+      if (myLibrary[index].read) {
+        myLibrary[index].read = false;
+      } else {
+        myLibrary[index].read = true;
+      }
+      saveArr(myLibrary);
+      render(myLibrary);
+      readedListeners();
+      deleteListeners();
+    });
+  });
+}
+
+function deleteListeners() {
+  const deleteBtns = [...document.querySelectorAll('.delete-book')];
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      const index = event.target.value;
+      myLibrary.splice(index, 1);
+      saveArr(myLibrary);
+      render(myLibrary);
+      readedListeners();
+      deleteListeners();
+    });
+  });
+}
+
+// DOM MANIPULATION
 function showForm() {
   const form = document.getElementById('hideShow');
   if (form.style.display === 'none') {
@@ -43,7 +77,6 @@ function showForm() {
 
 
 // LIBRARY LOGIC
-const myLibrary = retrieveArr();
 
 // validate methods
 function validateTitle(title) {
@@ -80,21 +113,8 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
   saveArr(myLibrary);
   render(myLibrary);
-}
-function deleteBook(index) {
-  myLibrary.splice(index, 1);
-  saveArr(myLibrary);
-  render(myLibrary);
-}
-
-function readedBook(index) {
-  if (myLibrary[index].read) {
-    myLibrary[index].read = false;
-  } else {
-    myLibrary[index].read = true;
-  }
-  saveArr(myLibrary);
-  render(myLibrary);
+  deleteListeners();
+  readedListeners();
 }
 
 // listener to add a book
@@ -116,5 +136,8 @@ button.addEventListener('click', () => {
     addBookToLibrary(book);
   }
 });
+document.getElementById('btn-show-form').addEventListener('click', showForm);
 
 render(myLibrary);
+deleteListeners();
+readedListeners();
